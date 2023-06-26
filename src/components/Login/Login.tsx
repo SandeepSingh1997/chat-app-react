@@ -1,25 +1,39 @@
-import { useState } from "react";
-import { ChangeEvent } from "react";
+import { FormEvent, ChangeEvent, useState, useEffect } from "react";
+
+import * as ActionCreator from "../../actionCreator";
+import store from "../../store";
 
 export default function Login() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [emailInput, setEmailInput] = useState<string>("");
+  const [passwordInput, setPasswordInput] = useState<string>("");
 
-  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+  const handleEmailInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmailInput(e.target.value);
   };
 
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+  const handlePasswordInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPasswordInput(e.target.value);
+  };
+
+  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    store.dispatch(
+      ActionCreator.userLogin({ name: emailInput, email: passwordInput })
+    );
   };
 
   return (
-    <form>
-      <input type="text" placeholder="email" onChange={handlePasswordChange} />
+    <form onSubmit={handleLogin}>
+      <input
+        type="text"
+        placeholder="email"
+        onChange={handleEmailInputChange}
+      />
       <input
         type="password"
         placeholder="password"
-        onChange={handleEmailChange}
+        onChange={handlePasswordInputChange}
       />
       <button>Login</button>
     </form>
