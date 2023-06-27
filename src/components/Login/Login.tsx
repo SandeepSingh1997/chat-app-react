@@ -1,26 +1,19 @@
-import { FormEvent, ChangeEvent, useState, useEffect } from "react";
-
-import * as ActionCreator from "../../actionCreator";
-import store from "../../store";
+import { FormEvent, ChangeEvent, useRef } from "react";
 
 export default function Login() {
-  const [emailInput, setEmailInput] = useState<string>("");
-  const [passwordInput, setPasswordInput] = useState<string>("");
+  const emailInputRef = useRef<string>("");
+  const passwordInputRef = useRef<string>("");
 
   const handleEmailInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmailInput(e.target.value);
+    emailInputRef.current = e.target.value;
   };
 
   const handlePasswordInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPasswordInput(e.target.value);
+    passwordInputRef.current = e.target.value;
   };
 
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    store.dispatch(
-      ActionCreator.userLogin({ name: emailInput, email: passwordInput })
-    );
   };
 
   return (

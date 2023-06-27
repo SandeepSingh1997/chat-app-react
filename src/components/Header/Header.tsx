@@ -3,9 +3,9 @@ export default function Header() {
     <header>
       <figure>
         <img alt="profile-picture" />
-        <span>USERNAME</span>
+        <span>{}</span>
       </figure>
-      <button>logout</button>
+      {true ? null : <button>logout</button>}
     </header>
   );
 }
