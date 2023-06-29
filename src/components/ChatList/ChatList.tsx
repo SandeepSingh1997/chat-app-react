@@ -8,8 +8,6 @@ import { create as createRoom } from "../../pages/Home/chatRoomSlice";
 export default function ChatList({ onSelectRoom }) {
   const chatRooms = useSelector((state) => state.chatRooms);
   const dispatch = useDispatch();
-  // console.log(chatRooms);
-
   const [roomNameInput, setRoomNameInput] = useState<string>("");
 
   const getChatList = () => {

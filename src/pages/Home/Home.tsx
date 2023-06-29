@@ -15,10 +15,7 @@ export default function HomePage() {
 
   const currUser = useSelector((state) => state.user);
 
-
-
   useEffect(() => {
-  
     const user = auth.currentUser;
     dispatch(login({ name: user.displayName, email: user.email }));
   });
@@ -26,16 +23,12 @@ export default function HomePage() {
   const handleSelectedRoom = (room) => {
     setActiveRoom(room);
   };
-
- 
-
   if (!currUser.isLoggedIn) {
     return <h2>Loading...</h2>;
   } else {
     return (
       <>
         <Header />
-        
         <main>
           <ChatList onSelectRoom={handleSelectedRoom} />
           {activeRoom && <Chat activeRoom={activeRoom} />}
